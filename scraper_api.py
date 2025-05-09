@@ -19,7 +19,10 @@ def scrape_tee_times(date: str = Query(..., description="Format: YYYY-MM-DD")):
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         page.goto("https://www.chronogolf.com/en/club/18821/widget?medium=widget&source=club")
-        page.wait_for_timeout(3000)
+        page.wait_for_timeout(6000)
+        print("🔍 Page content after date click:")
+        print(page.content())
+
 
         try:
             date_button = page.query_selector(f'[data-date="{date}"]')
